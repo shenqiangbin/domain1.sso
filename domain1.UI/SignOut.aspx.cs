@@ -12,6 +12,13 @@ namespace domain1.UI
         protected void Page_Load(object sender, EventArgs e)
         {
             Session.Clear();
+                        
+            var cookie = HttpContext.Current.Request.Cookies["domain1Id"];
+            if (cookie != null)
+            {
+                cookie.Expires = DateTime.Now.AddYears(-3);
+                Response.Cookies.Add(cookie);
+            }
         }
     }
 }
