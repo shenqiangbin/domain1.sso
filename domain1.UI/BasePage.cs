@@ -9,7 +9,7 @@ namespace domain1.UI
     public class BasePage : System.Web.UI.Page
     {
         protected override void OnLoad(EventArgs e)
-        {           
+        {
             //如果本地没有登录
             if (Session["UserId"] == null || string.IsNullOrEmpty(Session["UserId"].ToString()))
             {
@@ -20,7 +20,7 @@ namespace domain1.UI
                 }
                 else
                 {
-                    Response.Redirect("http://www.password.com/HasLogin.aspx?returnUrl=" + Request.Url.AbsoluteUri);
+                    Response.Redirect("http://www.password.com/HasLogin.aspx?returnUrl=" + HttpUtility.UrlEncode(Request.Url.AbsoluteUri), true);
                 }
             }
             base.OnLoad(e);
