@@ -13,14 +13,14 @@ namespace domain1.UI
             //如果本地没有登录
             if (Session["UserId"] == null || string.IsNullOrEmpty(Session["UserId"].ToString()))
             {
-                if (Request["hasLogin"] == "true" && Request.UrlReferrer != null && Request.UrlReferrer.Host == "www.password.com")
+                if (Request["hasLogin"] == "true")
                 {
                     var userId = Request["userId"];
                     Session["UserId"] = userId;
                 }
                 else
                 {
-                    Response.Redirect("http://www.password.com/HasLogin.aspx?returnUrl=" + HttpUtility.UrlEncode(Request.Url.AbsoluteUri), true);
+                    Response.Redirect("http://www.password.com/HasLogin.aspx?returnUrl=" + Request.Url.AbsoluteUri);
                 }
             }
             base.OnLoad(e);
